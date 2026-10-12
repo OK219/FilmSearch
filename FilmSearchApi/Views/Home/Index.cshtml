@@ -1,0 +1,137 @@
+@{
+    ViewData["Title"] = "Главная";
+}
+
+<style>
+    .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 80px 40px 40px;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 56px;
+        font-weight: 800;
+        letter-spacing: -1.5px;
+        margin-bottom: 20px;
+        background: linear-gradient(135deg, #fff 0%, #c7d2fe 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .hero p {
+        font-size: 18px;
+        color: #c7d2fe;
+        max-width: 640px;
+        line-height: 1.6;
+        margin-bottom: 40px;
+    }
+
+    .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+        max-width: 1080px;
+        width: 100%;
+        padding: 0 40px 80px;
+        margin: 0 auto;
+    }
+
+    .feature-card {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        padding: 28px 24px;
+        transition: all 0.25s ease;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-4px);
+        background: rgba(255, 255, 255, 0.09);
+        border-color: rgba(139, 92, 246, 0.4);
+    }
+
+    .feature-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.25), rgba(139, 92, 246, 0.25));
+        border: 1px solid rgba(139, 92, 246, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        margin-bottom: 16px;
+    }
+
+    .feature-card h3 {
+        font-size: 17px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: #e0e7ff;
+    }
+
+    .feature-card p {
+        font-size: 14px;
+        color: #a5b4fc;
+        line-height: 1.55;
+    }
+
+    @@media (max-width: 640px) {
+        .hero {
+            padding: 50px 20px 20px;
+        }
+
+        .hero h1 {
+            font-size: 34px;
+        }
+
+        .hero p {
+            font-size: 15px;
+        }
+
+        .features {
+            padding: 0 20px 50px;
+            gap: 14px;
+        }
+    }
+</style>
+
+<section class="hero">
+    <h1>Найди свой следующий любимый фильм</h1>
+    <p>
+        FilmSearch — это каталог фильмов с удобным поиском, фильтрацией по жанрам,
+        рейтингам и годам выпуска. Оставляйте отзывы, ставьте оценки и делитесь
+        впечатлениями с другими киноманами.
+    </p>
+</section>
+
+<section class="features">
+    <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <h3>Умный поиск</h3>
+        <p>Ищите фильмы по названию, жанру, году выпуска или рейтингу — быстро и удобно.</p>
+    </div>
+
+    <div class="feature-card">
+        <div class="feature-icon">⭐</div>
+        <h3>Рейтинги и отзывы</h3>
+        <p>Смотрите средние оценки фильмов и читайте отзывы других пользователей.</p>
+    </div>
+
+    <div class="feature-card">
+        <div class="feature-icon">🎭</div>
+        <h3>Жанры и подборки</h3>
+        <p>Исследуйте фильмы по жанрам — от классики до свежих новинок.</p>
+    </div>
+
+    <div class="feature-card">
+        <div class="feature-icon">✍️</div>
+        <h3>Свои оценки</h3>
+        <p>Делитесь мнением: ставьте оценку и пишите отзыв — один на каждый фильм.</p>
+    </div>
+</section>

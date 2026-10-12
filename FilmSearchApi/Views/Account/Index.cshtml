@@ -1,0 +1,246 @@
+@model FilmSearchApi.Models.ProfileViewModel
+@{
+    ViewData["Title"] = "Профиль";
+}
+
+<style>
+    .profile-container {
+        max-width: 900px;
+        margin: 0 auto;
+        width: 100%;
+        padding: 40px 20px;
+    }
+
+    .profile-header {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 32px;
+        margin-bottom: 32px;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .profile-avatar {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        flex-shrink: 0;
+    }
+
+    .profile-info h1 {
+        font-size: 24px;
+        font-weight: 800;
+        color: #e0e7ff;
+        margin-bottom: 4px;
+    }
+
+    .profile-info .profile-email {
+        font-size: 15px;
+        color: #a5b4fc;
+        word-break: break-all;
+    }
+
+    .profile-stats {
+        margin-left: auto;
+        text-align: right;
+    }
+
+    .profile-stats .stat-value {
+        font-size: 28px;
+        font-weight: 800;
+        color: #e0e7ff;
+    }
+
+    .profile-stats .stat-label {
+        font-size: 13px;
+        color: #a5b4fc;
+    }
+
+    .section-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: #e0e7ff;
+        margin-bottom: 20px;
+    }
+
+    .reviews-list {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .review-item {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 14px;
+        padding: 20px;
+        display: flex;
+        gap: 16px;
+        transition: all 0.2s ease;
+    }
+
+    .review-item:hover {
+        background: rgba(255, 255, 255, 0.09);
+        border-color: rgba(139, 92, 246, 0.4);
+    }
+
+    .review-poster {
+        width: 60px;
+        height: 90px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #1e1b4b, #4c1d95);
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        font-size: 24px;
+        opacity: 0.85;
+    }
+
+    .review-poster img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .review-body {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .review-film-link {
+        font-size: 16px;
+        font-weight: 700;
+        color: #e0e7ff;
+        text-decoration: none;
+        display: inline-block;
+        margin-bottom: 6px;
+    }
+
+    .review-film-link:hover {
+        color: #a5b4fc;
+        text-decoration: underline;
+    }
+
+    .review-rating {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        color: #fbbf24;
+        font-weight: 600;
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    .review-text {
+        font-size: 14px;
+        color: #c7d2fe;
+        line-height: 1.55;
+        word-wrap: break-word;
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: #a5b4fc;
+    }
+
+    .empty-state .icon {
+        font-size: 56px;
+        margin-bottom: 16px;
+        opacity: 0.5;
+    }
+
+    .empty-state a {
+        color: #8b5cf6;
+        font-weight: 600;
+        text-decoration: none;
+        margin-top: 12px;
+        display: inline-block;
+    }
+
+    .empty-state a:hover {
+        text-decoration: underline;
+    }
+
+    @@media (max-width: 640px) {
+        .profile-header { flex-direction: column; text-align: center; padding: 24px; }
+        .profile-stats { margin-left: 0; text-align: center; }
+        .review-item { flex-direction: column; }
+        .review-poster { width: 80px; height: 120px; margin: 0 auto; }
+    }
+</style>
+
+<div class="profile-container">
+
+    @* ===== Шапка профиля ===== *@
+    <div class="profile-header">
+        <div class="profile-avatar">👤</div>
+        <div class="profile-info">
+            <h1>Мой профиль</h1>
+            <div class="profile-email">@Model.Email</div>
+        </div>
+        <div class="profile-stats">
+            <div class="stat-value">@Model.Reviews.Count</div>
+            <div class="stat-label">
+                @(Model.Reviews.Count == 1 ? "отзыв" : "отзывов")
+            </div>
+        </div>
+    </div>
+
+    @* ===== Отзывы ===== *@
+    <h2 class="section-title">Мои отзывы</h2>
+
+    @if (Model.Reviews.Count == 0)
+    {
+        <div class="empty-state">
+            <div class="icon">💬</div>
+            <p>Вы ещё не оставили ни одного отзыва.</p>
+            <a href="/Film">Перейти в каталог →</a>
+        </div>
+    }
+    else
+    {
+        <div class="reviews-list">
+            @foreach (var review in Model.Reviews)
+            {
+                <div class="review-item">
+                    <div class="review-poster">
+                        @if (!string.IsNullOrEmpty(review.FilmPosterUrl))
+                        {
+                            <img src="@review.FilmPosterUrl" alt="@review.FilmName" loading="lazy" />
+                        }
+                        else
+                        {
+                            <span>🎬</span>
+                        }
+                    </div>
+                    <div class="review-body">
+                        <a href="/Film/Details?Id=@review.FilmId" class="review-film-link">
+                            @review.FilmName
+                        </a>
+                        <div class="review-rating">★ @review.Rating / 10</div>
+                        @if (!string.IsNullOrEmpty(review.ReviewText))
+                        {
+                            <div class="review-text">@review.ReviewText</div>
+                        }
+                        else
+                        {
+                            <div class="review-text" style="font-style: italic; opacity: 0.6;">
+                                Без текста — только оценка
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

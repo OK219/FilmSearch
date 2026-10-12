@@ -1,0 +1,162 @@
+@model FilmSearchApi.Models.AddFilmViewModel
+@{
+    ViewData["Title"] = "Добавить фильм";
+}
+
+<style>
+    /* ... твои существующие стили ... */
+
+    /* Стиль для input[type=file] */
+    .file-input-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 14px;
+        border: 1.5px dashed rgba(199, 210, 254, 0.3);
+        border-radius: 10px;
+        background: rgba(15, 15, 35, 0.5);
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .file-input-wrapper:hover {
+        border-color: #8b5cf6;
+        background: rgba(139, 92, 246, 0.08);
+    }
+
+    .file-input-wrapper input[type="file"] {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .file-input-icon {
+        font-size: 22px;
+        opacity: 0.7;
+    }
+
+    .file-input-text {
+        font-size: 14px;
+        color: #c7d2fe;
+    }
+
+    .file-input-hint {
+        font-size: 12px;
+        color: #a5b4fc;
+        margin-top: 6px;
+    }
+
+    /* Превью постера */
+    .poster-preview {
+        margin-top: 12px;
+        max-width: 200px;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid rgba(199, 210, 254, 0.2);
+        display: none;
+    }
+
+    .poster-preview img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+</style>
+
+<div class="add-container">
+    <div class="add-card">
+        <h1>Добавить фильм</h1>
+        <p class="subtitle">Заполните информацию о новом фильме</p>
+
+        @* ⚠️ enctype="multipart/form-data" — обязательно! *@
+        <form action="/Film/Add" method="post" enctype="multipart/form-data" novalidate>
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(false, "", new { @class = "validation-summary-errors" })
+
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" type="text" placeholder="Например: Начало" autofocus/>
+                <span asp-validation-for="Name" class="field-validation-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="GenreName"></label>
+                <input asp-for="GenreName" type="text" placeholder="Например: Фантастика"/>
+                <span asp-validation-for="GenreName" class="field-validation-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ReleaseDate"></label>
+                <input asp-for="ReleaseDate" type="date"/>
+                <span asp-validation-for="ReleaseDate" class="field-validation-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Poster"></label>
+                <div class="file-input-wrapper">
+                    <span class="file-input-icon">🖼</span>
+                    <span class="file-input-text" id="file-text">Выберите файл постера</span>
+                    <input asp-for="Poster" type="file" accept="image/jpeg,image/png,image/webp"
+                           id="poster-input"/>
+                </div>
+                <div class="file-input-hint">JPG, PNG или WEBP. Максимум 5 МБ.</div>
+                <span asp-validation-for="Poster" class="field-validation-error"></span>
+
+                <div class="poster-preview" id="poster-preview">
+                    <img id="poster-preview-img" alt="Превью постера"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <textarea asp-for="Description" placeholder="Краткое описание фильма"></textarea>
+                <span asp-validation-for="Description" class="field-validation-error"></span>
+            </div>
+
+            <div class="form-actions">
+                <a href="/Film" class="btn-cancel">Отмена</a>
+                <button type="submit" class="btn-submit">Добавить фильм</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        (function () {
+            const input = document.getElementById('poster-input');
+            const text = document.getElementById('file-text');
+            const preview = document.getElementById('poster-preview');
+            const previewImg = document.getElementById('poster-preview-img');
+
+            if (!input) return;
+
+            input.addEventListener('change', function () {
+                const file = input.files && input.files[0];
+                if (!file) {
+                    text.textContent = 'Выберите файл постера';
+                    preview.style.display = 'none';
+                    return;
+                }
+
+                text.textContent = file.name;
+
+                // Превью для картинок
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        previewImg.src = e.target.result;
+                        preview.style.display = 'block';
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    preview.style.display = 'none';
+                }
+            });
+        })();
+    </script>
+}

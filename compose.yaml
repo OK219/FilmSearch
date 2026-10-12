@@ -1,0 +1,60 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: filmsearch-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: "${POSTGRES_USER}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+      POSTGRES_DB: "${POSTGRES_DB}"
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:20001"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U filmsearch -d filmsearch"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  migrator:
+      build:
+        context: .
+        dockerfile: Dockerfile.migrator
+      container_name: filmsearch-migrator
+      environment:
+        ConnectionStrings__Default: "Host=${POSTGRES_HOST};Port=${POSTGRES_PORT};Database=${POSTGRES_DB};Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD}"
+      depends_on:
+        postgres:
+          condition: service_healthy
+      restart: "no"
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: filmsearch-app
+    restart: unless-stopped
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: "http://+:8080"
+      ConnectionStrings__Default: "Host=${POSTGRES_HOST};Port=${POSTGRES_PORT};Database=${POSTGRES_DB};Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD}"
+      AdminEmail: "${ADMIN_EMAIL}"
+      S3__ServiceUrl: "${S3_SERVICE_URL}"
+      S3__BucketName: "${S3_BUCKET_NAME}"
+      S3__AccessKey: "${S3_ACESS_KEY}"
+      S3__SecretKey: "${S3_SECRET_KEY}"
+      S3__AuthenticationRegion: "${S3_AUTHENTICATION_REGION}"
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      migrator:
+        condition: service_completed_successfully
+      
+
+volumes:
+  postgres_data:

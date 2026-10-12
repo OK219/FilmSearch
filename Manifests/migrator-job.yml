@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: filmsearch-migrator
+spec:
+  backoffLimit: 3
+  ttlSecondsAfterFinished: 60
+  template:
+    metadata:
+      labels:
+        app: filmsearch-migrator
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: migrator
+          image: filmsearch-migrator:latest
+          imagePullPolicy: Never
+          envFrom:
+            - secretRef:
+                name: filmsearch-secrets
+            - configMapRef:
+                name: filmsearch-config

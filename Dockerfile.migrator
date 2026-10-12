@@ -1,0 +1,17 @@
+FROM mcr.microsoft.com/dotnet/sdk:10.0
+
+WORKDIR /src
+
+RUN dotnet tool install --global dotnet-ef --version 10.0.0
+ENV PATH="$PATH:/root/.dotnet/tools"
+
+COPY ["FilmSearchApi/FilmSearchApi.csproj", "FilmSearchApi/"]
+RUN dotnet restore "FilmSearchApi/FilmSearchApi.csproj"
+
+COPY . .
+
+WORKDIR /src/FilmSearchApi
+
+RUN dotnet build "FilmSearchApi.csproj" -c Debug
+
+ENTRYPOINT ["dotnet", "ef", "database", "update", "--no-build"]
