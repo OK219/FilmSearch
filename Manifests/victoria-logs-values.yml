@@ -1,0 +1,41 @@
+server:
+  persistentVolume:
+    enabled: true          
+    size: 5Gi
+    storageClassName: "standard"
+
+  resources:
+    requests:
+      cpu: "200m"
+      memory: "512Mi"
+    limits:
+      cpu: "2000m"
+      memory: "2Gi"
+
+  retentionPeriod: "30d"
+
+vector:
+  enabled: true
+  customConfig:
+    transforms:
+      parser:
+        type: remap
+        inputs: [k8s]
+        source: |
+          .log = parse_json(.message) ?? .message
+          del(.message)
+
+          if is_object(.log) {
+            raw_level = string(.log."@l") ?? "info"
+            .level = downcase(raw_level)
+          } else {
+            .level = "info"
+          }
+    sinks:
+      vlogs:
+        type: elasticsearch
+        inputs: [parser]
+        request:
+          headers:
+            VL-Msg-Field: "log.@mt,log.@m,log.message,log.msg,log"
+            VL-Time-Field: "log.@t"

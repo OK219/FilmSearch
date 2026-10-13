@@ -45,6 +45,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/14339c5706ac411aa5416b323ee2b9902b2b60/de/f96eefc3/DbContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/14ff871a69ff4e2caa386e9b2a66dafb1c728/02/a970d26f/AuthorizeAttribute.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/23f9a0e5421848e6859af5b53619cd3f11750/f5/426698d7/SameSiteMode.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/256ca802aa26417495eb8eebe11bf1df2000/e7/42c33e85/EnvironmentLoggerConfigurationExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/347e6c9203d6415b96a755d9308303e31d7750/fd/95961a64/ActionMethodExecutor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3b6f1fa332344333b7bd2d4c69ce6b4d18750/7f/c30322c4/ClaimsIdentity.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/63e00382581c47d28537530d104afa1b12750/19/497d5e3b/AuthorizationMiddlewareInternal.cs" root0="FORCE_HIGHLIGHTING" />
@@ -57,6 +58,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/867f07671734405e8df4db5a028cfa9410750/4c/f14c2655/AuthenticationHttpContextExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/867f07671734405e8df4db5a028cfa9410750/68/aff0219d/IAuthenticationSchemeProvider.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/867f07671734405e8df4db5a028cfa9410750/a1/b763a370/IAuthenticationService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ea0f2e76975f4664999ee9811f312db828000/36/7237ece1/LoggerConfiguration.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f0df74b2fb49464a9845cdccf1399dfa2f750/5d/fca2bd74/StaticAssetsEndpointRouteBuilderExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f420f3a1e1714ea9b5d9fb63b94b1ad61c728/98/f53220d2/AuthenticationService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/Authorization/AdminAuthorizationHandler.cs" root0="FORCE_HIGHLIGHTING" />
@@ -95,6 +97,8 @@
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/Services/UserService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/Views/Shared/_Layout.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/FilmSearchApi/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/FilmSearchApi/wwwroot/lib/jquery/dist/jquery.slim.min.map" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -226,7 +230,7 @@
       <workItem from="1791096519635" duration="2822000" />
       <workItem from="1791099818214" duration="2696000" />
       <workItem from="1791271907210" duration="6026000" />
-      <workItem from="1791787407073" duration="725000" />
+      <workItem from="1791787407073" duration="13601000" />
     </task>
     <servers />
   </component>

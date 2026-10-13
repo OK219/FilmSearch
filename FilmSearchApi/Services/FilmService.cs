@@ -82,7 +82,9 @@ public class FilmService : IFilmService
     public async Task<Guid> AddFilmAsync(string name, string description, string genreName, DateOnly releaseDate, IFormFile poster)
     {
         var posterUrl = await UploadPosterAsync(poster);
-        return await _filmRepository.RegisterFilmAsync(name, description, genreName, releaseDate, posterUrl);
+        var filmId = await _filmRepository.RegisterFilmAsync(name, description, genreName, releaseDate, posterUrl);
+        _logger.LogInformation("Added film {FilmId}", filmId);
+        return filmId;
     }
 
     public async Task<FilmDetailsDto?> GetFilmDetailsAsync(Guid filmId, Guid? currentUserId)

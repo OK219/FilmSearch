@@ -48,7 +48,7 @@ public class AccountController : Controller
         }
 
         await LoginUser(model.Email, result.Value);
-        _logger.LogInformation("User registered: {Email}", model.Email);
+        _logger.LogInformation("User registered: {UserId}", result.Value);
         return RedirectToAction("Index", "Film");
     }
 
@@ -115,6 +115,6 @@ public class AccountController : Controller
             principal,
             new AuthenticationProperties { IsPersistent = true });
 
-        _logger.LogInformation("User logged in: {Email}", userEmail);
+        _logger.LogInformation("User logged in: {UserId}", userId);
     }
 }
