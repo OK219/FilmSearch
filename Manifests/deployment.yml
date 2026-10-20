@@ -11,6 +11,10 @@ spec:
     metadata:
       labels:
         app: filmsearch-app
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8081"
+        prometheus.io/path: "/metrics"
     spec:
       containers:
         - name: app
@@ -19,6 +23,8 @@ spec:
           ports:
             - name: http
               containerPort: 8080
+            - name: metrics
+              containerPort: 8081
           envFrom:
             - secretRef:
                 name: filmsearch-secrets

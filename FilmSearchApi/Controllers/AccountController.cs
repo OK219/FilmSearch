@@ -3,17 +3,25 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
+using FilmSearchApi.MetricsConfig;
 using FilmSearchApi.Models;
 using FilmSearchApi.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Prometheus;
 
 namespace FilmSearchApi.Controllers;
 
 public class AccountController : Controller
 {
+    private static readonly Counter UserAuthActivity = Metrics.CreateCounter(MetricConstants.UserAuthActivityCounterName, "Counts each time user log(in/out) or register",
+        new CounterConfiguration
+        {
+            LabelNames = MetricConstants.UserAuthActivityCounterLabels
+        });
+
     private readonly IUserService _userService;
     private readonly ILogger<AccountController> _logger;
 
@@ -49,6 +57,7 @@ public class AccountController : Controller
 
         await LoginUser(model.Email, result.Value);
         _logger.LogInformation("User registered: {UserId}", result.Value);
+        UserAuthActivity.WithLabels(MetricConstants.Register).Inc();
         return RedirectToAction("Index", "Film");
     }
 
@@ -71,7 +80,8 @@ public class AccountController : Controller
 
         if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
             return Redirect(returnUrl);
-
+        
+        UserAuthActivity.WithLabels(MetricConstants.Login).Inc();
         return RedirectToAction("Index", "Film");
     }
 
@@ -79,6 +89,7 @@ public class AccountController : Controller
     public async Task<IActionResult> Logout()
     {
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        UserAuthActivity.WithLabels(MetricConstants.Logout).Inc();
         return RedirectToAction("Register", "Account");
     }
 

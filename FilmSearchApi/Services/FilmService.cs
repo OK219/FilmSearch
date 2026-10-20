@@ -5,13 +5,17 @@ using System.Threading.Tasks;
 using Amazon.S3;
 using Amazon.S3.Model;
 using FilmSearchApi.DB;
+using FilmSearchApi.DB.Models;
 using FilmSearchApi.DB.Repositories;
+using FilmSearchApi.MetricsConfig;
 using FilmSearchApi.Models;
 using FilmSearchApi.Services.Configs;
 using FilmSearchApi.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Prometheus;
+using Metrics = Prometheus.Metrics;
 
 namespace FilmSearchApi.Services;
 
@@ -21,6 +25,26 @@ public class FilmService : IFilmService
     private const int MaxPageSize = 60;
     private const long MaxFileSizeBytes = 5 * 1024 * 1024;
     private const string S3KeyPrefix = "posters/";
+
+    private static readonly Counter UserFilmActivity = Metrics.CreateCounter(MetricConstants.UserFilmActivityCounterName, "Counts each time user performs an certain action",
+        new CounterConfiguration()
+        {
+            LabelNames = MetricConstants.UserFilmActivityCounterLabels
+        });
+
+    private static readonly Counter FilmOrderFrequencyCounter = Metrics.CreateCounter(
+        MetricConstants.FilmOrderFrequencyCounterName,
+        "Counts how frequent users apply certain order rule",
+        new CounterConfiguration
+        {
+            LabelNames = MetricConstants.FilmOrderFrequencyCounterLabels
+        });
+
+    private static readonly Histogram FilmSearchHistogram = Metrics.CreateHistogram(MetricConstants.FilmSearchHistogramName, "Defines how long it takes to search up films",
+        new HistogramConfiguration()
+        {
+            Buckets = MetricConstants.FilmSearchHistogramBuckets
+        });
 
     private readonly FilmRepository _filmRepository;
     private readonly ReviewRepository _reviewRepository;
@@ -51,7 +75,15 @@ public class FilmService : IFilmService
         if (pageSize < 1) pageSize = DefaultPageSize;
         if (pageSize > MaxPageSize) pageSize = MaxPageSize;
 
-        var (items, totalCount) = await _filmRepository.GetFilms(settings, page, pageSize);
+        FilmOrderFrequencyCounter.WithLabels(settings.OrderBy.ToString()).Inc();
+        List<Film> items;
+        int totalCount;
+
+        using (FilmSearchHistogram.NewTimer())
+        {
+            (items, totalCount) = await _filmRepository.GetFilms(settings, page, pageSize);
+        }
+
 
         var dtos = items.Select(x => new FilmListItemDto()
         {
@@ -81,14 +113,28 @@ public class FilmService : IFilmService
 
     public async Task<Guid> AddFilmAsync(string name, string description, string genreName, DateOnly releaseDate, IFormFile poster)
     {
-        var posterUrl = await UploadPosterAsync(poster);
+        string posterUrl;
+        try
+        {
+            posterUrl = await UploadPosterAsync(poster);
+        }
+        catch (Exception e)
+        {
+            _logger.LogInformation("Error uploading poster: {error}", e);
+            throw;
+        }
+
         var filmId = await _filmRepository.RegisterFilmAsync(name, description, genreName, releaseDate, posterUrl);
+
         _logger.LogInformation("Added film {FilmId}", filmId);
+
+        UserFilmActivity.WithLabels(MetricConstants.FilmAdd).Inc();
         return filmId;
     }
 
     public async Task<FilmDetailsDto?> GetFilmDetailsAsync(Guid filmId, Guid? currentUserId)
     {
+        UserFilmActivity.WithLabels(MetricConstants.FilmDetail).Inc();
         var film = await _filmRepository.GetFilmAsync(filmId);
         if (film is null)
             return null;
@@ -134,7 +180,7 @@ public class FilmService : IFilmService
             CanReview = currentUserId.HasValue
         };
     }
-    
+
     public async Task AddOrUpdateReviewAsync(Guid userId, Guid filmId, int rating, string? reviewText)
     {
         if (rating is < 1 or > 10)
@@ -145,15 +191,17 @@ public class FilmService : IFilmService
         if (existing is null)
         {
             await _reviewRepository.AddReviewAsync(userId, filmId, rating, reviewText ?? string.Empty);
+            UserFilmActivity.WithLabels(MetricConstants.ReviewAdd).Inc();
             _logger.LogInformation("User {UserId} added review for film {FilmId}", userId, filmId);
         }
         else
         {
             await _reviewRepository.UpdateReviewAsync(userId, filmId, rating, reviewText ?? string.Empty);
+            UserFilmActivity.WithLabels(MetricConstants.ReviewUpdate).Inc();
             _logger.LogInformation("User {UserId} updated review for film {FilmId}", userId, filmId);
         }
     }
-    
+
     public async Task DeleteFilmAsync(Guid filmId)
     {
         var film = await _filmRepository.GetFilmAsync(filmId);
@@ -162,7 +210,7 @@ public class FilmService : IFilmService
             _logger.LogWarning("Attempted to delete non-existent film {FilmId}", filmId);
             return;
         }
-        
+
         try
         {
             var posterKey = film.PosterUrl?.Substring(film.PosterUrl.IndexOf(S3KeyPrefix));
@@ -172,9 +220,10 @@ public class FilmService : IFilmService
         {
             _logger.LogWarning(ex, "Failed to delete poster {Key} for film {FilmId}", film.PosterUrl, filmId);
         }
-        
+
 
         await _filmRepository.DeleteFilm(filmId);
+        UserFilmActivity.WithLabels(MetricConstants.FilmDelete).Inc();
         _logger.LogInformation("Deleted film {FilmId}: {Name}", filmId, film.Name);
     }
 
@@ -188,7 +237,10 @@ public class FilmService : IFilmService
         }
 
         await _reviewRepository.DeleteUserReviewAsync(userId, filmId);
+
         _logger.LogInformation("User {UserId} deleted their review for film {FilmId}", userId, filmId);
+        UserFilmActivity.WithLabels(MetricConstants.ReviewDelete).Inc();
+
         return true;
     }
 

@@ -5,6 +5,7 @@ metadata:
 data:
   ASPNETCORE_ENVIRONMENT: "Development"
   ASPNETCORE_URLS: "http://+:8080"
+  MetricsPort: "8081"
 
   S3__ServiceUrl: "https://s3.yandexcloud.net"
   S3__BucketName: "filmsearch"

@@ -48,7 +48,6 @@ public static class ServiceCollectionExtensions
 
     public static IServiceCollection AddS3(this IServiceCollection services, IConfiguration configuration)
     {
-        
         services.Configure<S3Configuration>(configuration.GetSection("S3"));
 
         services.AddSingleton<IAmazonS3>(sp =>

@@ -2,6 +2,7 @@ using System;
 using FilmSearchApi.DI;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Prometheus;
 using Serilog;
 using Serilog.Enrichers.Sensitive;
 using Serilog.Events;
@@ -39,10 +40,14 @@ app
     .UseRouting()
     .UseAuthentication()
     .UseAuthorization();
+
 app.MapStaticAssets();
 app.MapControllerRoute(
         name: "default",
         pattern: "{controller=Home}/{action=Index}")
     .WithStaticAssets();
+
+var metricServer = new KestrelMetricServer(port: int.Parse(builder.Configuration["MetricsPort"] ?? "8081"));
+metricServer.Start();
 
 app.Run();
