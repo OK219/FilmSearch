@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bb-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bb-exporter
+  template:
+    metadata:
+      labels:
+        app: bb-exporter
+    spec:
+      containers:
+      - name: bb-exporter
+        image: prom/blackbox-exporter
+        ports:
+        - containerPort: 9115
+        args:
+        - --config.file=/etc/blackbox_exporter/bb.yml
+        volumeMounts:
+        - name: config
+          mountPath: /etc/blackbox_exporter
+      volumes:
+      - name: config
+        configMap:
+          name: bb-config

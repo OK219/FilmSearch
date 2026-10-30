@@ -10,18 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ce4243c-2305-402c-ad1c-9062aea6d63c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/FilmSearchApi/MetricsConfig/MetricConstants.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FilmSearch/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FilmSearch/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FilmSearch.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearch.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FilmSearchApi/Controllers/AccountController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/Controllers/AccountController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FilmSearchApi/DI/ServiceColectionExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/DI/ServiceColectionExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FilmSearchApi/FilmSearchApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/FilmSearchApi.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FilmSearchApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FilmSearchApi/Services/FilmService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/Services/FilmService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FilmSearchApi/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Manifests/configmap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Manifests/configmap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Manifests/deployment.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Manifests/deployment.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Manifests/postgres.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Manifests/postgres.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FilmSearchApi/DB/Repositories/ReviewRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/DB/Repositories/ReviewRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manifests/configmap.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manifests/deployment.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manifests/guide-vmsingle-values.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manifests/migrator-job.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manifests/postgres-service.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manifests/postgres.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manifests/service.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manifests/victoria-logs-values.yml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,6 +111,8 @@
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/Views/Shared/_Layout.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/FilmSearchApi/wwwroot/lib/bootstrap/dist/js/bootstrap.js.map" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/FilmSearchApi/wwwroot/lib/jquery/dist/jquery.min.map" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/wwwroot/lib/jquery/dist/jquery.slim.min.map" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
@@ -257,8 +257,22 @@
       <workItem from="1791787407073" duration="13601000" />
       <workItem from="1792238126224" duration="2545000" />
       <workItem from="1792395784436" duration="14214000" />
-      <workItem from="1792478339670" duration="4336000" />
+      <workItem from="1792478339670" duration="5246000" />
+      <workItem from="1792571073775" duration="1772000" />
+      <workItem from="1792749405016" duration="10000" />
+      <workItem from="1793016767776" duration="1191000" />
+      <workItem from="1793111033885" duration="3536000" />
+      <workItem from="1793247498145" duration="12583000" />
     </task>
+    <task id="LOCAL-00001" summary="метрики">
+      <option name="closed" value="true" />
+      <created>1792484125361</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1792484125362</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -268,6 +282,8 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="метрики" />
+    <option name="LAST_COMMIT_MESSAGE" value="метрики" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

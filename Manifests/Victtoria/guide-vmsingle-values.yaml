@@ -1,4 +1,6 @@
 server:
+  extraArgs:
+    promscrape.configCheckInterval: "30s"
   scrape:
     enabled: true
     configMap: ""
@@ -89,3 +91,36 @@ server:
               action: replace
               target_label: __metrics_path__
               regex: (.+)
+
+    extraScrapeConfigs:
+      - job_name: "filmsearch-search-probe"
+        scrape_interval: 10s
+        metrics_path: /probe
+        params:
+          module: [http_2xx]
+        static_configs:
+          - targets:
+              - filmsearch-app/Film/Details?Id=01a15843-85a5-7828-9bc9-9d319dd99257
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: __param_target
+          - source_labels: [__param_target]
+            target_label: instance
+          - target_label: __address__
+            replacement: bb-prober:9115
+
+      - job_name: "filmsearch-filminfo-probe"
+        scrape_interval: 10s
+        metrics_path: /probe
+        params:
+          module: [http_2xx]
+        static_configs:
+          - targets:
+              - filmsearch-app/Film
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: __param_target
+          - source_labels: [__param_target]
+            target_label: instance
+          - target_label: __address__
+            replacement: bb-prober:9115

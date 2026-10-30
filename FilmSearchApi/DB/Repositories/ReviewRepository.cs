@@ -13,13 +13,13 @@ public class ReviewRepository(FilmDbContext dbContext)
     {
         return await dbContext.Reviews.FirstOrDefaultAsync(x => x.UserId == userId && x.FilmId == filmId);
     }
-    
+
     public async Task DeleteUserReviewAsync(Guid userId, Guid filmId)
     {
         await dbContext.Reviews.Where(x => x.UserId == userId && x.FilmId == filmId).ExecuteDeleteAsync();
         await UpdateFilmRating(filmId);
     }
-    
+
     public async Task<List<Review>> GetFilmReviewsAsync(Guid filmId)
     {
         return await dbContext.Reviews
@@ -30,7 +30,7 @@ public class ReviewRepository(FilmDbContext dbContext)
             .ThenBy(r => r.User.Email)
             .ToListAsync();
     }
-    
+
     public async Task<List<Review>> GetUserReviewsWithFilm(Guid userId)
     {
         return await dbContext.Reviews
@@ -63,7 +63,9 @@ public class ReviewRepository(FilmDbContext dbContext)
     private async Task UpdateFilmRating(Guid filmId)
     {
         var film = await dbContext.Films.FirstAsync(x => x.Id == filmId);
-        var newAvgRating = dbContext.Reviews.Where(x => x.FilmId == filmId).Average(x => x.Rating);
+        var newAvgRating = await dbContext.Reviews
+            .Where(x => x.FilmId == filmId)
+            .AverageAsync(x => (double?)x.Rating) ?? 0.0;
         film.Rating = newAvgRating;
         dbContext.Films.Update(film);
         await dbContext.SaveChangesAsync();
