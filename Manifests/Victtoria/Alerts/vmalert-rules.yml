@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vmalert-rules
+data:
+  alert.yml: |-
+    groups:
+      - name: Search-SLO-ALERT
+        interval: 30s
+        rules:
+          - alert: Search-Warn
+            expr: quantile_over_time(0.95, probe_duration_seconds{job="filmsearch-search-probe"}[5m]) > 1
+            for: 10s
+            labels:
+              severity: warning
+            annotations:
+              summary: "Время поиска фильмов превышает 1 СЕК"
+          - alert: Search-Err
+            expr: quantile_over_time(0.95, probe_duration_seconds{job="filmsearch-search-probe"}[5m]) > 3
+            for: 10s
+            labels:
+              severity: error
+            annotations:
+              summary: "!!!Время поиска фильмов превышает 3 СЕК!!!"
+
+      - name: Filminfo-SLO-ALERT
+        interval: 30s
+        rules:
+          - alert: Info-Warn
+            expr: avg_over_time(probe_success{job="filmsearch-filminfo-probe"}[5m]) < 0.99
+            for: 10s
+            labels:
+              severity: warning
+            annotations:
+              summary: "Наблюдаются ошибки при просмотре страниц фильмов"
+          - alert: Info-Err
+            expr: avg_over_time(probe_success{job="filmsearch-filminfo-probe"}[5m]) < 0.96
+            for: 10s
+            labels:
+              severity: error
+            annotations:
+              summary: "!!!МНОГО ОШИБОК при просмотре страниц фильмов!!!"
+
+      - name: FilmSearch-CPU-USAGE-ALERT
+        interval: 30s
+        rules:
+          - alert: FilmSearch-CPU-NONE
+            expr: avg by (app) (system_runtime_cpu_usage{app="FilmSearch"}[5m]) <= 0
+            for: 10s
+            labels:
+              severity: error
+            annotations:
+              summary: "Нет данных о потреблении ресурсов сервисом FilmSearch, возможно упали реплики"
+          - alert: FilmSearch-CPU-HIGH
+            expr: avg by (app) (system_runtime_cpu_usage{app="FilmSearch"}[5m]) > 1
+            for: 10s
+            labels:
+              severity: error
+            annotations:
+              summary: "СЛИШКОМ ВЫСОКОЕ ПОТРЕБЛЕНИЕ ПРОЦЕССОРА - FilmSearch"

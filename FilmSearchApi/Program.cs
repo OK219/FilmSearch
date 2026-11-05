@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using FilmSearchApi.DI;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,6 +24,12 @@ Log.Logger = new LoggerConfiguration()
     .Enrich.WithSensitiveDataMasking()
     .WriteTo.Console(new CompactJsonFormatter(new JsonValueFormatter()))
     .CreateLogger();
+
+Metrics.DefaultRegistry.SetStaticLabels(new Dictionary<string, string>
+{
+    { "app", "FilmSearch" },
+    { "environment", builder.Environment.EnvironmentName }
+});
 
 builder.Host.UseSerilog();
 

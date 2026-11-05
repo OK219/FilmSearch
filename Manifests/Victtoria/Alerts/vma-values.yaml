@@ -1,0 +1,43 @@
+server:
+  metadata:
+    name: filmmsearch-alerts
+    namespace: default
+  datasource:
+    url: http://vmsingle-victoria-metrics-single-server.default.svc:8428
+  notifier:
+    alertmanager:
+      url: http://vma-victoria-metrics-alert-alertmanager.default.svc:9093
+
+  configMap: vmalert-rules
+
+  extraArgs:
+    rule:
+      - /config/alert.yml
+    configCheckInterval: 30s
+    
+alertmanager:
+  enabled: true
+  extraVolumes:
+    - name: telegram-secrets
+      secret:
+        secretName: alerting-secreets
+
+  extraVolumeMounts:
+    - name: telegram-secrets
+      mountPath: /etc/alertmanager/secrets
+      readOnly: true
+  config:
+    global:
+      resolve_timeout: 1m
+    route:
+      receiver: 'telega'
+      group_by: ["alertname"]
+      group_wait: 30s
+      group_interval: 10s
+      repeat_interval: 24h
+    receivers:
+      - name: 'telega'
+        telegram_configs:
+          - bot_token_file: /etc/alertmanager/secrets/BOT_TOKEN
+            chat_id: 5232416221
+            send_resolved: true
