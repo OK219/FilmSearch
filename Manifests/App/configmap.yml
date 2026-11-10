@@ -3,10 +3,17 @@ kind: ConfigMap
 metadata:
   name: filmsearch-config
 data:
-  ASPNETCORE_ENVIRONMENT: "Development"
-  ASPNETCORE_URLS: "http://+:8080"
-  MetricsPort: "8081"
-
-  S3__ServiceUrl: "https://s3.yandexcloud.net"
-  S3__BucketName: "filmsearch"
-  S3__AuthenticationRegion: ru-central1
+  appsettings.json: |
+    {
+      "S3": {
+        "ServiceUrl": "https://s3.yandexcloud.net",
+        "BucketName": "filmsearch",
+        "AuthenticationRegion": "ru-central1"
+      },
+      "MetricsPort": "8081",
+      "FailureSettings": {
+        "Enabled" : false,
+        "ErrorChance": 0,
+        "Latency": 500
+      }
+    }

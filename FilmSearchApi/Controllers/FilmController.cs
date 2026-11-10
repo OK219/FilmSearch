@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FilmSearchApi.Controllers;
 
+[Route("/Film")]
 public class FilmController : Controller
 {
     private readonly IFilmService _filmService;
@@ -18,7 +19,7 @@ public class FilmController : Controller
         _filmService = filmService;
     }
 
-    [HttpGet]
+    [HttpGet("")]
     [HttpPost]
     public async Task<IActionResult> Index([FromForm] FilmFilterAndOrderSettings filter, int page = 1, int pageSize = 12)
     {
@@ -42,11 +43,11 @@ public class FilmController : Controller
     }
 
     [Authorize]
-    [HttpGet]
+    [HttpGet("add")]
     public IActionResult Add() => View(new AddFilmViewModel());
 
     [Authorize]
-    [HttpPost]
+    [HttpPost("add")]
     [ValidateAntiForgeryToken]
     [RequestSizeLimit(10 * 1024 * 1024)]
     public async Task<IActionResult> Add(AddFilmViewModel model)
@@ -77,8 +78,8 @@ public class FilmController : Controller
         }
     }
 
-    [HttpGet]
-    public async Task<IActionResult> Details(Guid id)
+    [HttpGet("{id:guid}/details")]
+    public async Task<IActionResult> Details([FromRoute] Guid id)
     {
         var currentUserId = GetCurrentUserId();
         var model = await _filmService.GetFilmDetailsAsync(id, currentUserId);
@@ -89,10 +90,10 @@ public class FilmController : Controller
         return View(model);
     }
 
-    [HttpPost]
+    [HttpPost("{filmId:guid}/review")]
     [Authorize]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> AddReview(Guid filmId, int rating, string? reviewText)
+    public async Task<IActionResult> AddReview([FromRoute] Guid filmId, int rating, string? reviewText)
     {
         var userId = GetCurrentUserId();
         if (userId is null)
@@ -108,17 +109,17 @@ public class FilmController : Controller
         return RedirectToAction(nameof(Index));
     }
     
-    [HttpPost]
+    [HttpDelete("{id:guid}")]
     [Authorize(Policy = "AdminOnly")]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> DeleteFilm(Guid id)
+    public async Task<IActionResult> DeleteFilm([FromRoute] Guid id)
     {
         await _filmService.DeleteFilmAsync(id);
         return RedirectToAction(nameof(Index));
     }
     
 
-    [HttpPost]
+    [HttpDelete("{filmId:guid}/review")]
     [Authorize]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteReview(Guid filmId)

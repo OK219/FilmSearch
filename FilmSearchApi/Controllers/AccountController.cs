@@ -14,6 +14,7 @@ using Prometheus;
 
 namespace FilmSearchApi.Controllers;
 
+[Route("/account")]
 public class AccountController : Controller
 {
     private static readonly Counter UserAuthActivity = Metrics.CreateCounter(MetricConstants.UserAuthActivityCounterName, "Counts each time user log(in/out) or register",
@@ -32,17 +33,17 @@ public class AccountController : Controller
     }
 
 
-    [HttpGet]
+    [HttpGet("register")]
     public IActionResult Register() => View();
 
-    [HttpGet]
+    [HttpGet("login")]
     public IActionResult Login(string? returnUrl = null)
     {
         ViewData["ReturnUrl"] = returnUrl;
         return View();
     }
 
-    [HttpPost]
+    [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterViewModel model, CancellationToken ct)
     {
         if (!ModelState.IsValid)
@@ -61,7 +62,7 @@ public class AccountController : Controller
         return RedirectToAction("Index", "Film");
     }
 
-    [HttpPost]
+    [HttpPost("login")]
     public async Task<IActionResult> Login(LoginViewModel model, string? returnUrl, CancellationToken ct)
     {
         if (!ModelState.IsValid)
@@ -85,7 +86,7 @@ public class AccountController : Controller
         return RedirectToAction("Index", "Film");
     }
 
-    [HttpPost]
+    [HttpPost("logout")]
     public async Task<IActionResult> Logout()
     {
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
@@ -93,7 +94,7 @@ public class AccountController : Controller
         return RedirectToAction("Register", "Account");
     }
 
-    [HttpGet]
+    [HttpGet("me")]
     public async Task<IActionResult> Index()
     {
         var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;

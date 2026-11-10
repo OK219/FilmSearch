@@ -30,6 +30,18 @@ spec:
                 name: filmsearch-secrets
             - configMapRef:
                 name: filmsearch-config
+          env:
+            - name: ASPNETCORE_URLS
+              value: "http://+:8080"
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Development"
+            - name: DOTNET_USE_POLLING_FILE_WATCHER
+              value: "true"
+            - name: CONFIG_PATH
+              value: /app/config/appsettings.json
+          volumeMounts:
+            - name: config-volume
+              mountPath: /app/config
           resources:
             requests:
               cpu: "100m"
@@ -53,3 +65,7 @@ spec:
             periodSeconds: 10
             timeoutSeconds: 3
             failureThreshold: 3
+      volumes:
+        - name: config-volume
+          configMap:
+            name: filmsearch-config
