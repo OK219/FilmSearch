@@ -324,10 +324,9 @@
 
                 @if (isAdmin)
                 {
-                    <form action="/Film/DeleteFilm" method="post" class="delete-film-form"
+                    <form action="/Film/@Model.Id" method="post" class="delete-film-form" data-method="delete"
                           onsubmit="return confirm('Удалить фильм «@Model.Name»? Все отзывы тоже будут удалены.');">
                         @Html.AntiForgeryToken()
-                        <input type="hidden" name="id" value="@Model.Id" />
                         <button type="submit" class="btn-danger">Удалить фильм</button>
                     </form>
                 }
@@ -360,9 +359,8 @@
                     }
                 </h3>
 
-                <form action="/Film/AddReview" method="post">
+                <form action="/Film/@Model.Id/review" method="post">
                     @Html.AntiForgeryToken()
-                    <input type="hidden" name="filmId" value="@Model.Id" />
 
                     <div class="form-group">
                         <label for="rating">Оценка (1–10)</label>
@@ -385,7 +383,7 @@
         else
         {
             <div class="login-prompt">
-                <a href="/Account/Login?returnUrl=/Film/Details/@Model.Id">Войдите</a>,
+                <a href="/account/login?returnUrl=/Film/@Model.Id/details">Войдите</a>,
                 чтобы оставить отзыв
             </div>
         }
@@ -419,10 +417,9 @@
 
                                 @if (review.IsCurrentUser)
                                 {
-                                    <form action="/Film/DeleteReview" method="post"
+                                    <form action="/Film/@Model.Id/review" method="post" data-method="delete"
                                           onsubmit="return confirm('Удалить ваш отзыв?');">
                                         @Html.AntiForgeryToken()
-                                        <input type="hidden" name="filmId" value="@Model.Id" />
                                         <button type="submit" class="btn-delete-review" title="Удалить отзыв">✕</button>
                                     </form>
                                 }
@@ -434,3 +431,37 @@
         }
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        (function () {
+            document.querySelectorAll('form[data-method="delete"]').forEach(function (form) {
+                form.addEventListener('submit', async function (event) {
+                    event.preventDefault();
+
+                    var token = form.querySelector('input[name="__RequestVerificationToken"]');
+                    var headers = {};
+                    if (token) {
+                        headers['RequestVerificationToken'] = token.value;
+                    }
+
+                    try {
+                        var response = await fetch(form.action, {
+                            method: 'DELETE',
+                            headers: headers
+                        });
+
+                        if (!response.ok) {
+                            alert('Не удалось выполнить запрос.');
+                            return;
+                        }
+
+                        window.location.href = response.url;
+                    } catch (e) {
+                        alert('Не удалось выполнить запрос.');
+                    }
+                });
+            });
+        })();
+    </script>
+}

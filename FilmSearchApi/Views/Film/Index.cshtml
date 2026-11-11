@@ -338,7 +338,7 @@
         @inject IAuthorizationService AuthService
         @if ((await AuthService.AuthorizeAsync(User, "AdminOnly")).Succeeded)
         {
-            <a href="/Film/Add" class="catalog-add-btn">
+            <a href="/Film/add" class="catalog-add-btn">
                 <span>+</span> Добавить фильм
             </a>
         }
@@ -411,7 +411,7 @@
             <div class="films-grid">
                 @foreach (var film in results.Items)
                 {
-                    <a href="/Film/Details?Id=@film.Id" class="film-card">
+                    <a href="/Film/@film.Id/details" class="film-card">
                         <div class="film-poster">
                             @if (!string.IsNullOrEmpty(film.PosterKey))
                             {

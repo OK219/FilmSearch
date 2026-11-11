@@ -204,7 +204,7 @@
         <h1>Вход</h1>
         <p class="subtitle">Войдите, чтобы оставлять отзывы</p>
 
-        <form action="/Account/Login" method="post" novalidate>
+        <form action="/account/login" method="post" novalidate>
             @Html.AntiForgeryToken()
 
             @* Показываем все ошибки — и модельные, и полевые *@
@@ -235,7 +235,7 @@
         </form>
 
         <div class="register-link">
-            Нет аккаунта? <a href="/Account/Register">Зарегистрироваться</a>
+            Нет аккаунта? <a href="/account/register">Зарегистрироваться</a>
         </div>
     </div>
 </body>

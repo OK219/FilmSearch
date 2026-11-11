@@ -168,17 +168,17 @@
                 <div class="app-user">
                     <span class="app-user-email">@email</span>
                 </div>
-                <a href="/Account/Index" class="nav-ghost">Профиль</a>
+                <a href="/account/me" class="nav-ghost">Профиль</a>
 
-                <form action="/Account/Logout" method="post" style="display:inline">
+                <form action="/account/logout" method="post" style="display:inline">
                     @Html.AntiForgeryToken()
                     <button type="submit" class="nav-ghost">Выйти</button>
                 </form>
             }
             else
             {
-                <a href="/Account/Login" class="nav-ghost">Войти</a>
-                <a href="/Account/Register" class="nav-primary">Регистрация</a>
+                <a href="/account/login" class="nav-ghost">Войти</a>
+                <a href="/account/register" class="nav-primary">Регистрация</a>
             }
         </nav>
     </header>

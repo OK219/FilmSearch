@@ -2,6 +2,7 @@ using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using FilmSearchApi.DB;
+using FilmSearchApi.Filters;
 using FilmSearchApi.Models;
 using FilmSearchApi.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -19,6 +20,7 @@ public class FilmController : Controller
         _filmService = filmService;
     }
 
+    [ServiceFilter(typeof(FailureFilter))]
     [HttpGet("")]
     [HttpPost]
     public async Task<IActionResult> Index([FromForm] FilmFilterAndOrderSettings filter, int page = 1, int pageSize = 12)
@@ -78,6 +80,7 @@ public class FilmController : Controller
         }
     }
 
+    [ServiceFilter(typeof(FailureFilter))]
     [HttpGet("{id:guid}/details")]
     public async Task<IActionResult> Details([FromRoute] Guid id)
     {

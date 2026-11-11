@@ -73,7 +73,7 @@
         <p class="subtitle">Заполните информацию о новом фильме</p>
 
         @* ⚠️ enctype="multipart/form-data" — обязательно! *@
-        <form action="/Film/Add" method="post" enctype="multipart/form-data" novalidate>
+        <form action="/Film/add" method="post" enctype="multipart/form-data" novalidate>
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(false, "", new { @class = "validation-summary-errors" })
 

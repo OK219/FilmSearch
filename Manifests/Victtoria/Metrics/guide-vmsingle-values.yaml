@@ -100,7 +100,7 @@ server:
           module: [http_2xx]
         static_configs:
           - targets:
-              - filmsearch-app/Film/Details?Id=01a15843-85a5-7828-9bc9-9d319dd99257
+              - filmsearch-app/Film/01a15843-85a5-7828-9bc9-9d319dd99257/details
         relabel_configs:
           - source_labels: [__address__]
             target_label: __param_target
@@ -116,7 +116,7 @@ server:
           module: [http_2xx]
         static_configs:
           - targets:
-              - filmsearch-app/Film
+              - filmsearch-app/Film/
         relabel_configs:
           - source_labels: [__address__]
             target_label: __param_target

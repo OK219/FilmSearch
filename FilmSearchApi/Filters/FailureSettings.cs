@@ -1,4 +1,4 @@
-namespace FilmSearchApi.Middlewares;
+namespace FilmSearchApi.Filters;
 
 public class FailureSettings
 {

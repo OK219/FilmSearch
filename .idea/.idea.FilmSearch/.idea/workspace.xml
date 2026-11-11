@@ -10,16 +10,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ce4243c-2305-402c-ad1c-9062aea6d63c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/FilmSearchApi/Middlewares/FailureMiddleware.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FilmSearchApi/Middlewares/FailureSettings.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FilmSearch/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FilmSearch/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FilmSearch.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearch.sln.DotSettings.user" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FilmSearchApi/Controllers/AccountController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/Controllers/AccountController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FilmSearchApi/Controllers/FilmController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/Controllers/FilmController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FilmSearchApi/Controllers/HomeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/Controllers/HomeController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FilmSearchApi/Middlewares/FailureMiddleware.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FilmSearchApi/Middlewares/FailureSettings.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/FilmSearchApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FilmSearchApi/Views/Account/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/Views/Account/Index.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FilmSearchApi/Views/Account/Login.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/Views/Account/Login.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FilmSearchApi/Views/Account/Register.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/Views/Account/Register.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FilmSearchApi/Views/Film/Add.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/Views/Film/Add.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FilmSearchApi/Views/Film/Details.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/Views/Film/Details.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FilmSearchApi/Views/Film/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/Views/Film/Index.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FilmSearchApi/Views/Shared/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/Views/Shared/_Layout.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Manifests/App/configmap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Manifests/App/configmap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Manifests/App/deployment.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Manifests/App/deployment.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manifests/Victtoria/Metrics/guide-vmsingle-values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Manifests/Victtoria/Metrics/guide-vmsingle-values.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Отчеты/Отчет SLO SLA/image-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Отчеты/Отчет SLO SLA/image-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Отчеты/Отчет SLO SLA/image-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Отчеты/Отчет SLO SLA/image.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Отчеты/Отчет SLO SLA/отчет.md" beforeDir="false" afterPath="$PROJECT_DIR$/Отчеты/Отчет SLO SLA/отчет.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +68,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/14ff871a69ff4e2caa386e9b2a66dafb1c728/02/a970d26f/AuthorizeAttribute.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/23f9a0e5421848e6859af5b53619cd3f11750/f5/426698d7/SameSiteMode.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/256ca802aa26417495eb8eebe11bf1df2000/e7/42c33e85/EnvironmentLoggerConfigurationExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/347e6c9203d6415b96a755d9308303e31d7750/52/bba68035/ServiceFilterAttribute.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/347e6c9203d6415b96a755d9308303e31d7750/fd/95961a64/ActionMethodExecutor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3b6f1fa332344333b7bd2d4c69ce6b4d18750/7f/c30322c4/ClaimsIdentity.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/46d6f70f4b80474f8de1e464546feebcd2728/30/bfe0077d/RouteEndpoint.cs" root0="FORCE_HIGHLIGHTING" />
@@ -94,8 +106,6 @@
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/DB/Repositories/UserRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/DI/ServiceColectionExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/MetricsConfig/MetricConstants.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/FilmSearchApi/Middlewares/FailureMiddleware.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/FilmSearchApi/Middlewares/FailureSettings.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/Models/AddFilmViewModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/Models/ErrorViewModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/Models/FilmDetailsDto.cs" root0="FORCE_HIGHLIGHTING" />
@@ -277,7 +287,8 @@
       <workItem from="1793885366459" duration="3426000" />
       <workItem from="1793894793254" duration="371000" />
       <workItem from="1793944246003" duration="15000" />
-      <workItem from="1794301119261" duration="8748000" />
+      <workItem from="1794301119261" duration="17722000" />
+      <workItem from="1794388786182" duration="11261000" />
     </task>
     <task id="LOCAL-00001" summary="метрики">
       <option name="closed" value="true" />
@@ -303,7 +314,15 @@
       <option name="project" value="LOCAL" />
       <updated>1793895035924</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="иммитация ошибок и метрики хттп">
+      <option name="closed" value="true" />
+      <created>1794318074636</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1794318074636</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -327,7 +346,8 @@
     <MESSAGE value="метрики" />
     <MESSAGE value="SLI SLO SLA" />
     <MESSAGE value="ALERTS" />
-    <option name="LAST_COMMIT_MESSAGE" value="ALERTS" />
+    <MESSAGE value="иммитация ошибок и метрики хттп" />
+    <option name="LAST_COMMIT_MESSAGE" value="иммитация ошибок и метрики хттп" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using FilmSearchApi.DI;
-using FilmSearchApi.Middlewares;
+using FilmSearchApi.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -53,13 +53,11 @@ builder.Services
     .AddDataBase(builder.Configuration)
     .AddServices();
 
+builder.Services.AddScoped<FailureFilter>();
+
 var app = builder.Build();
 
 app
-    .UseMiddleware<FailureMiddleware>()
-    .UseRouting()
-    .UseAuthentication()
-    .UseAuthorization()
     .UseHttpMetrics(options =>
     {
         options.AddCustomLabel("http_route", context =>
@@ -67,7 +65,24 @@ app
             var endpoint = context.GetEndpoint() as RouteEndpoint;
             return endpoint?.RoutePattern.RawText ?? context.Request.Path.Value ?? "/";
         });
+    })
+    .UseRouting()
+    .UseAuthentication()
+    .UseAuthorization()
+    .UseExceptionHandler(errorApp =>
+    {
+        errorApp.Run(async context =>
+        {
+            context.Response.StatusCode = 500;
+            await context.Response.WriteAsJsonAsync(new
+            {
+                title = "Internal Server Error",
+                status = 500,
+            });
+        });
     });
+;
+
 
 app.MapStaticAssets();
 app.MapControllers().WithStaticAssets();

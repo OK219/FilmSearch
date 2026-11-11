@@ -186,7 +186,7 @@
         <h1>Создать аккаунт</h1>
         <p class="subtitle">Присоединяйтесь к FilmSearch</p>
 
-        <form action="/Account/Register" method="post" novalidate>
+        <form action="/account/register" method="post" novalidate>
             @Html.AntiForgeryToken()
 
             @* Показываем все ошибки — и модельные, и полевые *@
@@ -220,7 +220,7 @@
         </form>
 
         <div class="login-link">
-            Уже есть аккаунт? <a href="/Account/Login">Войти</a>
+            Уже есть аккаунт? <a href="/account/login">Войти</a>
         </div>
     </div>
 </body>

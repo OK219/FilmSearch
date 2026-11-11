@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
+using FilmSearchApi.Filters;
 using FilmSearchApi.MetricsConfig;
 using FilmSearchApi.Models;
 using FilmSearchApi.Services.Interfaces;
@@ -62,6 +63,7 @@ public class AccountController : Controller
         return RedirectToAction("Index", "Film");
     }
 
+    [ServiceFilter(typeof(FailureFilter))]
     [HttpPost("login")]
     public async Task<IActionResult> Login(LoginViewModel model, string? returnUrl, CancellationToken ct)
     {

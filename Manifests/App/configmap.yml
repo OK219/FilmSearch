@@ -12,8 +12,8 @@ data:
       },
       "MetricsPort": "8081",
       "FailureSettings": {
-        "Enabled" : false,
-        "ErrorChance": 0,
-        "Latency": 500
+        "Enabled" : true,
+        "ErrorChance": 0.9,
+        "Latency": 450
       }
     }
