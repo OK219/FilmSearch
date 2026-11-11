@@ -11,26 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2ce4243c-2305-402c-ad1c-9062aea6d63c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FilmSearch/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FilmSearch/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FilmSearch.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearch.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FilmSearchApi/Controllers/AccountController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/Controllers/AccountController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FilmSearchApi/Controllers/FilmController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/Controllers/FilmController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FilmSearchApi/Middlewares/FailureMiddleware.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FilmSearchApi/Middlewares/FailureSettings.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FilmSearchApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FilmSearchApi/Views/Account/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/Views/Account/Index.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FilmSearchApi/Views/Account/Login.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/Views/Account/Login.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FilmSearchApi/Views/Account/Register.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/Views/Account/Register.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FilmSearchApi/Views/Film/Add.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/Views/Film/Add.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FilmSearchApi/Views/Film/Details.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/Views/Film/Details.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FilmSearchApi/Views/Film/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/Views/Film/Index.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FilmSearchApi/Views/Shared/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/Views/Shared/_Layout.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Manifests/App/configmap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Manifests/App/configmap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Manifests/Victtoria/Metrics/guide-vmsingle-values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Manifests/Victtoria/Metrics/guide-vmsingle-values.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Отчеты/Отчет SLO SLA/image-1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Отчеты/Отчет SLO SLA/image-2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Отчеты/Отчет SLO SLA/image-3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Отчеты/Отчет SLO SLA/image.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Отчеты/Отчет SLO SLA/отчет.md" beforeDir="false" afterPath="$PROJECT_DIR$/Отчеты/Отчет SLO SLA/отчет.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manifests/Db/postgres.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Manifests/Db/postgres.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,6 +105,7 @@
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/Services/Interfaces/IUserService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/Services/UserService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/Views/Shared/_Layout.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Admin/Documents/FilmSearch/FilmSearchApi/Views/Shared/_Layout.cshtml" root0="FORCE_HIGHLIGHTING" root1="SKIP_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map" root0="FORCE_HIGHLIGHTING" />
@@ -288,7 +270,7 @@
       <workItem from="1793894793254" duration="371000" />
       <workItem from="1793944246003" duration="15000" />
       <workItem from="1794301119261" duration="17722000" />
-      <workItem from="1794388786182" duration="11261000" />
+      <workItem from="1794388786182" duration="13575000" />
     </task>
     <task id="LOCAL-00001" summary="метрики">
       <option name="closed" value="true" />
@@ -322,7 +304,15 @@
       <option name="project" value="LOCAL" />
       <updated>1794318074636</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="доделки для SLO">
+      <option name="closed" value="true" />
+      <created>1794413247931</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1794413247931</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -347,7 +337,8 @@
     <MESSAGE value="SLI SLO SLA" />
     <MESSAGE value="ALERTS" />
     <MESSAGE value="иммитация ошибок и метрики хттп" />
-    <option name="LAST_COMMIT_MESSAGE" value="иммитация ошибок и метрики хттп" />
+    <MESSAGE value="доделки для SLO" />
+    <option name="LAST_COMMIT_MESSAGE" value="доделки для SLO" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

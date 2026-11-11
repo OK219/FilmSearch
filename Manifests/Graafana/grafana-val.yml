@@ -1,0 +1,20 @@
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+      - name: VictoriaMetrics
+        type: prometheus 
+        access: proxy
+        url: http://vmsingle-victoria-metrics-single-server.default.svc:8428 
+        isDefault: true
+        editable: true
+        jsonData:
+          prometheusType: Prometheus 
+
+persistence:
+  enabled: true
+  type: pvc 
+  storageClassName: "standard"
+  accessModes:
+    - ReadWriteOnce
+  size: 1Gi
