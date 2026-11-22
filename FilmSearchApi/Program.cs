@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using FilmSearchApi.DI;
 using FilmSearchApi.Filters;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
@@ -12,14 +13,23 @@ using Serilog.Enrichers.Sensitive;
 using Serilog.Events;
 using Serilog.Formatting.Compact;
 using Serilog.Formatting.Json;
+using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
+
 
 builder.Configuration.AddJsonFile(
     builder.Configuration["CONFIG_PATH"] ?? "/app/config/appsettings.json",
     optional: false,
     reloadOnChange: true
 );
+
+builder.Services.AddDataProtection()
+    .SetApplicationName("FilmSearch")
+    .PersistKeysToStackExchangeRedis(
+        ConnectionMultiplexer.Connect(builder.Configuration["Redis:ConnectionString"]),
+        "DataProtection-Keys"
+    );
 
 builder.Services.Configure<FailureSettings>(
     builder.Configuration.GetSection("FailureSettings"));
@@ -40,7 +50,8 @@ Log.Logger = new LoggerConfiguration()
 Metrics.DefaultRegistry.SetStaticLabels(new Dictionary<string, string>
 {
     { "app", "FilmSearch" },
-    { "environment", builder.Environment.EnvironmentName }
+    { "environment", builder.Environment.EnvironmentName },
+    {"ver", builder.Configuration["VER"] ?? "V1"},
 });
 
 builder.Host.UseSerilog();

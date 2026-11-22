@@ -3,7 +3,13 @@ kind: Deployment
 metadata:
   name: filmsearch-app
 spec:
-  replicas: 1
+  replicas: 6
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+
   selector:
     matchLabels:
       app: filmsearch-app
@@ -39,6 +45,8 @@ spec:
               value: "true"
             - name: CONFIG_PATH
               value: /app/config/appsettings.json
+            - name: VER
+              value: "V2"
           volumeMounts:
             - name: config-volume
               mountPath: /app/config
@@ -69,3 +77,16 @@ spec:
         - name: config-volume
           configMap:
             name: filmsearch-config
+
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: filmsearch-app
+spec:
+  parentRefs:
+    - name: eg
+  rules:
+    - backendRefs:
+        - name: filmsearch-app
+          port: 80

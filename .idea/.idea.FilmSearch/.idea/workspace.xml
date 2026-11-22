@@ -11,7 +11,13 @@
   <component name="ChangeListManager">
     <list default="true" id="2ce4243c-2305-402c-ad1c-9062aea6d63c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FilmSearch/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FilmSearch/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Manifests/Db/postgres.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Manifests/Db/postgres.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FilmSearchApi/FilmSearchApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/FilmSearchApi.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FilmSearchApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manifests/App/configmap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Manifests/App/configmap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manifests/App/deployment.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manifests/Db/migrator-job.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manifests/Db/postgres-service.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manifests/Db/postgres.yml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +111,6 @@
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/Services/Interfaces/IUserService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/Services/UserService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/Views/Shared/_Layout.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Admin/Documents/FilmSearch/FilmSearchApi/Views/Shared/_Layout.cshtml" root0="FORCE_HIGHLIGHTING" root1="SKIP_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map" root0="FORCE_HIGHLIGHTING" />
@@ -115,6 +120,7 @@
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/wwwroot/lib/jquery/dist/jquery.min.map" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/wwwroot/lib/jquery/dist/jquery.slim.min.map" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Отчеты/Grafana/FilmSearch SLA-1794418292773.json" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -270,7 +276,10 @@
       <workItem from="1793894793254" duration="371000" />
       <workItem from="1793944246003" duration="15000" />
       <workItem from="1794301119261" duration="17722000" />
-      <workItem from="1794388786182" duration="13575000" />
+      <workItem from="1794388786182" duration="13796000" />
+      <workItem from="1795088607276" duration="3680000" />
+      <workItem from="1795269309131" duration="2092000" />
+      <workItem from="1795329291250" duration="4283000" />
     </task>
     <task id="LOCAL-00001" summary="метрики">
       <option name="closed" value="true" />
@@ -312,7 +321,15 @@
       <option name="project" value="LOCAL" />
       <updated>1794413247931</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="графана">
+      <option name="closed" value="true" />
+      <created>1794420124819</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1794420124819</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -338,7 +355,8 @@
     <MESSAGE value="ALERTS" />
     <MESSAGE value="иммитация ошибок и метрики хттп" />
     <MESSAGE value="доделки для SLO" />
-    <option name="LAST_COMMIT_MESSAGE" value="доделки для SLO" />
+    <MESSAGE value="графана" />
+    <option name="LAST_COMMIT_MESSAGE" value="графана" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

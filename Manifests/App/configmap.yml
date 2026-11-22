@@ -12,8 +12,11 @@ data:
       },
       "MetricsPort": "8081",
       "FailureSettings": {
-        "Enabled" : true,
+        "Enabled" : false,
         "ErrorChance": 0.9,
         "Latency": 450
+      },
+      "Redis": {
+        "ConnectionString": "redis-service:6379,abortConnect=false,connectTimeout=5000,syncTimeout=5000"
       }
     }
