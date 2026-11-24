@@ -4,7 +4,7 @@ metadata:
   name: filmsearch-migrator
 spec:
   backoffLimit: 3
-  ttlSecondsAfterFinished: 60
+  ttlSecondsAfterFinished: 360
   template:
     metadata:
       labels:
@@ -17,6 +17,28 @@ spec:
           imagePullPolicy: Never
           envFrom:
             - secretRef:
-                name: filmsearch-secrets
+                name: filmsearch-database-secrets
             - configMapRef:
                 name: filmsearch-config
+          env:
+            - name: ASPNETCORE_URLS
+              value: "http://+:8080"
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Development"
+            - name: DOTNET_USE_POLLING_FILE_WATCHER
+              value: "true"
+            - name: CONFIG_PATH
+              value: /app/config/appsettings.json
+            - name: VER
+              value: "V1"
+            - name: POSTGRES_USER_READONLY
+              value: "$(POSTGRES_USER_READONLY)"
+            - name: POSTGRES_PASSWORD_READONLY
+              value: "$(POSTGRES_PASSWORD_READONLY)"
+          volumeMounts:
+            - name: config-volume
+              mountPath: /app/config
+      volumes:
+        - name: config-volume
+          configMap:
+            name: filmsearch-config

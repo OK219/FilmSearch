@@ -9,14 +9,14 @@ data:
         interval: 30s
         rules:
           - alert: Search-Warn
-            expr: quantile_over_time(0.95, probe_duration_seconds{job="filmsearch-search-probe"}[5m]) > 1
+            expr: sum(rate(http_request_duration_seconds_bucket{http_route=~"/?Film", le="0.512"}[1m])) / sum(rate(http_request_duration_seconds_bucket{http_route=~"/?Film", le="+Inf"}[1m])) * 100 or vector(0) < 99 or (absent(sum(http_request_duration_seconds_bucket{http_route=~"/?Film"})))
             for: 10s
             labels:
               severity: warning
             annotations:
               summary: "Время поиска фильмов превышает 1 СЕК"
           - alert: Search-Err
-            expr: quantile_over_time(0.95, probe_duration_seconds{job="filmsearch-search-probe"}[5m]) > 3
+            expr: sum(rate(http_request_duration_seconds_bucket{http_route=~"/?Film", le="0.512"}[1m])) / sum(rate(http_request_duration_seconds_bucket{http_route=~"/?Film", le="+Inf"}[1m])) * 100 or vector(0) < 95 or (absent(sum(http_request_duration_seconds_bucket{http_route=~"/?Film"})))
             for: 10s
             labels:
               severity: error
@@ -27,14 +27,14 @@ data:
         interval: 30s
         rules:
           - alert: Info-Warn
-            expr: avg_over_time(probe_success{job="filmsearch-filminfo-probe"}[5m]) < 0.99
+            expr: ((sum(rate(http_requests_received_total{http_route=~".*/details", code=~"5.."}[1m])) or vector(0)) / sum(rate(http_requests_received_total{http_route=~".*/details"}[1m])) * 100) >= 0.5 or (absent(sum(http_requests_received_total{http_route=~".*/details"})))
             for: 10s
             labels:
               severity: warning
             annotations:
               summary: "Наблюдаются ошибки при просмотре страниц фильмов"
           - alert: Info-Err
-            expr: avg_over_time(probe_success{job="filmsearch-filminfo-probe"}[5m]) < 0.96
+            expr: ((sum(rate(http_requests_received_total{http_route=~".*/details", code=~"5.."}[1m])) or vector(0)) / sum(rate(http_requests_received_total{http_route=~".*/details"}[1m])) * 100) >= 1 or (absent(sum(http_requests_received_total{http_route=~".*/details"})))
             for: 10s
             labels:
               severity: error
@@ -52,9 +52,16 @@ data:
             annotations:
               summary: "Нет данных о потреблении ресурсов сервисом FilmSearch, возможно упали реплики"
           - alert: FilmSearch-CPU-HIGH
-            expr: avg by (app) (system_runtime_cpu_usage{app="FilmSearch"}[5m]) > 1
+            expr: avg by (app) (system_runtime_cpu_usage{app="FilmSearch"}[5m]) > 70
             for: 10s
             labels:
-              severity: error
+              severity: warn
+            annotations:
+              summary: "Замечано высокое потребление процессора - FilmSearch"
+          - alert: FilmSearch-CPU-EXTREMLY-HIGH
+            expr: avg by (app) (system_runtime_cpu_usage{app="FilmSearch"}[5m]) > 90
+            for: 10s
+            labels:
+              severity: warn
             annotations:
               summary: "СЛИШКОМ ВЫСОКОЕ ПОТРЕБЛЕНИЕ ПРОЦЕССОРА - FilmSearch"

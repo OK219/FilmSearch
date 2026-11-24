@@ -1,6 +1,13 @@
 server:
   extraArgs:
     promscrape.configCheckInterval: "30s"
+  resources:
+    requests:
+      cpu: "200m"
+      memory: "512Mi"
+    limits:
+      cpu: "2000m"
+      memory: "2Gi"
   scrape:
     enabled: true
     configMap: ""

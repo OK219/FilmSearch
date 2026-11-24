@@ -10,14 +10,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ce4243c-2305-402c-ad1c-9062aea6d63c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/FilmSearchApi/Migrations/AddReadOnlyUser.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FilmSearch/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FilmSearch/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FilmSearchApi/FilmSearchApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/FilmSearchApi.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FilmSearchApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FilmSearchApi/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Manifests/App/configmap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Manifests/App/configmap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Manifests/App/deployment.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Manifests/Db/migrator-job.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Manifests/Db/postgres-service.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Manifests/Db/postgres.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manifests/Db/Postgres/migrator-job.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Manifests/Db/Postgres/migrator-job.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manifests/Db/Postgres/postgres.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Manifests/Db/Postgres/postgres.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manifests/Graafana/grafana-val.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Manifests/Graafana/grafana-val.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manifests/Prober/bb-exporter.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Manifests/Prober/bb-exporter.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manifests/Victtoria/Alerts/vma-values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Manifests/Victtoria/Alerts/vma-values.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manifests/Victtoria/Alerts/vmalert-rules.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Manifests/Victtoria/Alerts/vmalert-rules.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manifests/Victtoria/Metrics/guide-vmsingle-values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Manifests/Victtoria/Metrics/guide-vmsingle-values.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manifests/secrets.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Отчеты/Отчет SLO SLA/отчет.md" beforeDir="false" afterPath="$PROJECT_DIR$/Отчеты/Отчет SLO SLA/отчет.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,6 +96,7 @@
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/DB/Repositories/UserRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/DI/ServiceColectionExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/MetricsConfig/MetricConstants.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/FilmSearchApi/Migrations/AddReadOnlyUser.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/Models/AddFilmViewModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/Models/ErrorViewModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FilmSearchApi/Models/FilmDetailsDto.cs" root0="FORCE_HIGHLIGHTING" />
@@ -279,7 +283,8 @@
       <workItem from="1794388786182" duration="13796000" />
       <workItem from="1795088607276" duration="3680000" />
       <workItem from="1795269309131" duration="2092000" />
-      <workItem from="1795329291250" duration="4283000" />
+      <workItem from="1795329291250" duration="4450000" />
+      <workItem from="1795507111516" duration="4614000" />
     </task>
     <task id="LOCAL-00001" summary="метрики">
       <option name="closed" value="true" />
@@ -329,7 +334,15 @@
       <option name="project" value="LOCAL" />
       <updated>1794420124819</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="стартегии деплоя">
+      <option name="closed" value="true" />
+      <created>1795355473806</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1795355473806</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -356,7 +369,8 @@
     <MESSAGE value="иммитация ошибок и метрики хттп" />
     <MESSAGE value="доделки для SLO" />
     <MESSAGE value="графана" />
-    <option name="LAST_COMMIT_MESSAGE" value="графана" />
+    <MESSAGE value="стартегии деплоя" />
+    <option name="LAST_COMMIT_MESSAGE" value="стартегии деплоя" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
